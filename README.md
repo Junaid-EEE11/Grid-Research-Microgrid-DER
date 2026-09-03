@@ -1,1 +1,1 @@
-"# Grid-Research-Microgrid-DER" 
+# Grid-Research-Microgrid-DER
