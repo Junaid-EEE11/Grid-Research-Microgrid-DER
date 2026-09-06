@@ -1,0 +1,41 @@
+experiment_matrix_id: ablation_studies
+description: Ablation studies evaluating DER flexibility, reactive power, risk weight, and calibration
+base_config: configs/base.yaml
+
+ablations:
+  # A: Risk-aware MPC without reactive-power control (Q=0)
+  - id: ablation_no_reactive_power
+    description: Stochastic MPC with reactive power control disabled (Q=0)
+    overrides:
+      optimization:
+        enable_reactive_power: false
+
+  # B: Risk-aware MPC without battery flexibility (P_batt=0)
+  - id: ablation_no_battery
+    description: Stochastic MPC with battery storage disabled (P_batt=0)
+    overrides:
+      optimization:
+        enable_battery: false
+
+  # C: Stochastic MPC with risk/CVaR weight set to zero (Risk-Neutral Stochastic MPC)
+  - id: ablation_zero_cvar_weight
+    description: Stochastic MPC with w_cvar_voltage = 0.0 (Risk-Neutral)
+    overrides:
+      optimization:
+        weights:
+          w_cvar_voltage: 0.0
+
+  # D: Proposed controller using intentionally degraded uncertainty calibration
+  - id: ablation_miscalibrated_uncertainty
+    description: Stochastic MPC using under-dispersed uncertainty scenarios
+    overrides:
+      uncertainty:
+        calibration_mode: under_dispersed
+
+  # E: Deterministic MPC using the same median forecast as the probabilistic model
+  - id: ablation_deterministic_mpc_median
+    description: Deterministic MPC using median forecast from quantile GBR
+    overrides:
+      controller_type: deterministic_mpc
+
+output_dir: results/runs/ablations

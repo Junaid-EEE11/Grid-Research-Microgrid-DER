@@ -1,0 +1,92 @@
+experiment_id: smoke_test_48h
+description: Fast 48-hour end-to-end smoke test across rule-based, deterministic, and stochastic MPC
+random_seed: 42
+controller_type: stochastic_mpc
+
+date_ranges:
+  train_start: "2012-01-01 00:00:00"
+  train_end: "2013-09-30 23:00:00"
+  val_start: "2013-10-01 00:00:00"
+  val_end: "2013-12-31 23:00:00"
+  test_start: "2014-06-01 00:00:00"
+  test_end: "2014-06-03 00:00:00"   # 48 hours for fast testing
+
+location:
+  latitude: 39.5
+  longitude: -8.0
+  elevation: 150.0
+  timezone: UTC
+  location_name: "Central Portugal Reference Site"
+
+battery:
+  bus_ids: ["13", "48", "65", "114"]
+  power_rating_kw: 250.0
+  energy_rating_kwh: 1000.0
+  eta_charge: 0.95
+  eta_discharge: 0.95
+  soc_min: 0.1
+  soc_max: 0.9
+  soc_initial: 0.5
+  soc_target_final: 0.5
+
+pv:
+  penetration: 0.50
+  placement_seed: 42
+  candidate_buses: null
+  inverter:
+    s_oversize_factor: 1.10
+    min_power_factor: 0.85
+    volt_var_slope: 0.05
+
+forecasting:
+  horizon_hours: 24
+  quantiles: [0.1, 0.5, 0.9]
+  load_model_type: quantile_gbr
+  pv_model_type: quantile_gbr
+  n_estimators: 50
+  max_depth: 4
+  learning_rate: 0.1
+  min_samples_leaf: 10
+
+uncertainty:
+  scenario_count: 10
+  method: block_bootstrap
+  block_length_hours: 24
+  uncertainty_inflation_factor: 1.0
+  calibration_mode: well_calibrated
+  random_seed: 42
+
+voltage_limits:
+  v_min_pu: 0.95
+  v_max_pu: 1.05
+  v_nom_pu: 1.0
+
+sensitivity:
+  perturbation_p_kw: 25.0
+  perturbation_q_kvar: 25.0
+  reference_load_scaling: 1.0
+  validation_sample_count: 5
+
+optimization:
+  horizon_hours: 24
+  cvar_alpha: 0.95
+  solver: CLARABEL
+  solver_verbose: false
+  weights:
+    w_voltage_violation: 1000.0
+    w_cvar_voltage: 2000.0
+    w_voltage_deviation: 10.0
+    w_curtailment: 50.0
+    w_battery_throughput: 2.0
+    w_energy_import: 0.15
+    w_energy_export: 0.05
+  enable_reactive_power: true
+  enable_battery: true
+
+paths:
+  feeder_dir: feeder/ieee123
+  raw_data_dir: data/raw
+  interim_data_dir: data/interim
+  processed_data_dir: data/processed
+  results_dir: results
+  reports_dir: reports

@@ -1,0 +1,16 @@
+experiment_matrix_id: calibration_experiment
+description: Controlled calibration study testing H4 with well-calibrated vs under-dispersed vs over-dispersed uncertainty
+base_config: configs/base.yaml
+
+calibration_modes:
+  - id: cal_well_calibrated
+    calibration_mode: well_calibrated
+    description: Quantile scenarios from empirical validation residuals
+  - id: cal_under_dispersed
+    calibration_mode: under_dispersed
+    description: Scenarios shrunk toward median (overconfidence, too narrow intervals)
+  - id: cal_over_dispersed
+    calibration_mode: over_dispersed
+    description: Scenarios expanded away from median (underconfidence, too wide intervals)
+
+output_dir: results/runs/calibration_study

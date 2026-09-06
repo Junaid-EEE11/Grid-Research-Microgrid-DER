@@ -1,0 +1,42 @@
+{
+  "feeder": "IEEE 123-node Test Feeder",
+  "authority": "EPRI / IEEE PES Distribution System Analysis Subcommittee",
+  "dss_version": "0.9.4",
+  "files": {
+    "IEEE123Master.dss": {
+      "source_url": "https://raw.githubusercontent.com/tshort/OpenDSS/master/Distrib/IEEETestCases/123Bus/IEEE123Master.dss",
+      "md5": "ba064687eb52c60d7bd2dc04119ffb3d",
+      "size_bytes": "15574"
+    },
+    "IEEELineCodes.DSS": {
+      "source_url": "https://raw.githubusercontent.com/tshort/OpenDSS/master/Distrib/IEEETestCases/123Bus/IEEELineCodes.DSS",
+      "md5": "4a3bd2356bf727225afd6ea0d928cbed",
+      "size_bytes": "11851"
+    },
+    "IEEE123Loads.DSS": {
+      "source_url": "https://raw.githubusercontent.com/tshort/OpenDSS/master/Distrib/IEEETestCases/123Bus/IEEE123Loads.DSS",
+      "md5": "df114094da10a5826b9b7fa4c4311cdd",
+      "size_bytes": "8289"
+    },
+    "IEEE123Regulators.DSS": {
+      "source_url": "https://raw.githubusercontent.com/tshort/OpenDSS/master/Distrib/IEEETestCases/123Bus/IEEE123Regulators.DSS",
+      "md5": "90ee12d905d4153a83d53533fdc2c1fe",
+      "size_bytes": "1861"
+    },
+    "BusCoords.dat": {
+      "source_url": "https://raw.githubusercontent.com/tshort/OpenDSS/master/Distrib/IEEETestCases/123Bus/BusCoords.dat",
+      "md5": "392f5bcfa0a899569079b1b367645468",
+      "size_bytes": "2858"
+    },
+    "Run_IEEE123Bus.DSS": {
+      "source_url": "https://raw.githubusercontent.com/tshort/OpenDSS/master/Distrib/IEEETestCases/123Bus/Run_IEEE123Bus.DSS",
+      "md5": "56a8cd5f63600879d7c2fbebf40d94af",
+      "size_bytes": "4764"
+    }
+  },
+  "validation": {
+    "converged": true,
+    "num_buses": 132,
+    "num_nodes": 278
+  }
+}

@@ -1,0 +1,25 @@
+experiment_matrix_id: full_3x5x3_matrix
+description: 3 controllers x 5 PV penetrations x 3 forecast uncertainty levels
+base_config: configs/base.yaml
+
+factors:
+  controllers:
+    - rule_based
+    - deterministic_mpc
+    - stochastic_mpc
+  pv_penetrations:
+    - 0.0
+    - 0.25
+    - 0.50
+    - 0.75
+    - 1.00
+  uncertainty_inflation_factors:
+    - 1.0   # Nominal
+    - 1.5   # Moderately inflated
+    - 2.0   # Strongly inflated
+  seeds:
+    - 42
+    - 123
+    - 999
+
+output_dir: results/runs/experiment_matrix
